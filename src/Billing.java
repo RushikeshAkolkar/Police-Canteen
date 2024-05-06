@@ -481,9 +481,8 @@ public class Billing extends javax.swing.JFrame {
              s3 = (String)mod.getValueAt(a, 2);
              s4 = Integer.parseInt(t1.getText());
             try {
-                Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DB",
-            "postgres", "123");
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/DB","root","12345");
             ps = con.prepareStatement("insert into bill values(?,?,?,?,?,?)");
             ps.setString(1, s7);
             ps.setInt(2,s4);
@@ -526,12 +525,11 @@ public class Billing extends javax.swing.JFrame {
         ResultSet rs;
         try {
            try {
-               Class.forName("org.postgresql.Driver");
+               Class.forName("com.mysql.cj.jdbc.Driver");
            } catch (ClassNotFoundException ex) {
                Logger.getLogger(Billing.class.getName()).log(Level.SEVERE, null, ex);
            }
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DB",
-            "postgres", "123");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/DB","root","12345");
             stmt = con.createStatement();
             rs=stmt.executeQuery("select * from police");
             while(rs.next())
@@ -688,12 +686,11 @@ public class Billing extends javax.swing.JFrame {
         String s1;
          try {
             try {
-                Class.forName("org.postgresql.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Billing.class.getName()).log(Level.SEVERE, null, ex);
             }
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DB",
-            "postgres", "123");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/DB","root","12345");
             stmt = con.createStatement();
             rs=stmt.executeQuery("select police.district,police.pid,police.pname,bill.bill_date,pro,pri,qty from bill inner join police on bill.id=police.pid");
             tf.setText("---------------------------------------------------------------------------------------\n\t   Police Canteen Of "+ll1.getText()+"\n---------------------------------------------------------------------------------------\nDate       \t\t"+date+"\nId-\t\t"+ t1.getText()+"\n"+"Name-       \t\t"+t2.getText()+"\n---------"

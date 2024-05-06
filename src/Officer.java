@@ -163,15 +163,14 @@ public class Officer extends javax.swing.JFrame {
         ResultSet rs;
         try {
             try {
-                Class.forName("org.postgresql.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Officer.class.getName()).log(Level.SEVERE, null, ex);
             }
-            con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/DB",
-            "postgres", "123");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/DB","root","12345");
             //con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","police","123");
             stmt = con.createStatement();
-            rs=stmt.executeQuery("select * from officer where uname='"+s1+"' and pass='"+s2+"'");
+            rs=stmt.executeQuery("select * from login where uname='"+s1+"' and pass='"+s2+"'");
             if(rs.next())
             {
                 if(s1.equals(rs.getString(2)) && s2.equals(rs.getString(3)))

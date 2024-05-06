@@ -146,10 +146,9 @@ public class Register extends javax.swing.JFrame {
         Connection con;
        PreparedStatement ps;
        try {
-           Class.forName("org.postgresql.Driver");
-            con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/DB",
-            "postgres", "123");
-            ps = con.prepareStatement("update officer set uname=? , pass=? where district=?");
+           Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/DB","root","12345");
+            ps = con.prepareStatement("update login set uname=? , pass=? where district=?");
             ps.setString(1, s2);
             ps.setString(2,s3);
             ps.setString(3,s1);
@@ -162,7 +161,7 @@ public class Register extends javax.swing.JFrame {
             }
             else
             {
-                ps = con.prepareStatement("insert into officer values (?,?,?)");
+                ps = con.prepareStatement("insert into login values (?,?,?)");
                 ps.setString(1, s1);
                 ps.setString(2,s2);
                 ps.setString(3,s3);

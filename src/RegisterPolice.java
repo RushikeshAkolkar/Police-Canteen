@@ -141,9 +141,8 @@ public class RegisterPolice extends javax.swing.JFrame {
         Connection con;
        PreparedStatement ps;
        try {
-            Class.forName("org.postgresql.Driver");
-            con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/DB",
-            "postgres", "123");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/DB","root","12345");
             ps = con.prepareStatement("insert into police values(?,?,?)");
             ps.setString(1, s1);
             ps.setString(2,s2);
